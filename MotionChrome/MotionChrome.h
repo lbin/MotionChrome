@@ -2,6 +2,10 @@
 #define MOTIONCHROME_H
 
 #include <QMainWindow>
+#include <OpenSceneGraph/MainScene.h>
+
+
+
 
 namespace Ui {
 class MotionChrome;
@@ -17,6 +21,9 @@ public:
     
 private:
     Ui::MotionChrome *ui;
+
+    MainScene* mainScene;
+
 };
 
 #endif // MOTIONCHROME_H

@@ -1,11 +1,11 @@
 MotionChrome
 ============
 
-Character Animation
+Character Animation  
 
 1. Development Environment:  
 
-a. Qt 5.0.2 (-openGL desktop)  
+a. Qt 5.0.2 (-opengl desktop)  
 
 b. Mingw64  
 
