@@ -239,7 +239,7 @@ public:
         osgDB::Input fr;
         fr.attach( &stream );
 
-        osg::ref_ptr<osgAnimation::Bone> boneroot = new osgAnimation::Bone( "Root" );
+        osg::ref_ptr<osgAnimation::Bone> boneroot = new osgAnimation::Bone( "SkelRoot" );
         boneroot->setDefaultUpdateCallback();
 
         osg::ref_ptr<osgAnimation::Skeleton> skelroot = new osgAnimation::Skeleton;

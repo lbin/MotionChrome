@@ -95,6 +95,7 @@ struct AddHelperBone : public osg::NodeVisitor
             {
                 osg::ref_ptr<osgAnimation::Bone> childBone = dynamic_cast<osgAnimation::Bone*>(bone->getChild(i));
                 osg::Vec3 offset = childBone->getMatrixInSkeletonSpace().getTrans();
+                if(bone->getName()!="SkelRoot")
                 bone->addChild(createBody(offset));
             }
         }
@@ -117,7 +118,7 @@ void OSGSkeleton::createSkeleton(string str)
         AnimtkViewerModelController::setModel(finder._am.get());
     }
     AddHelperBone addHelper;
-    skeleton->accept(addHelper);
+    skeleton->getChild(0)->accept(addHelper);
 }
 
 

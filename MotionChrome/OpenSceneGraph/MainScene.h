@@ -14,7 +14,6 @@
 #include <OpenSceneGraph/OSGGround.h>
 
 #include <OpenSceneGraph/OSGSkeleton.h>
-#include <OpenSceneGraph/LightManager.h>
 #include <osgShadow/ShadowedScene>
 #include <osgShadow/ShadowVolume>
 #include <osgShadow/ShadowTexture>
@@ -34,8 +33,6 @@ public:
 
     OSGGround* ground;
     OSGSkeleton* skelRoot;
-
-    LightManager lightManager;
 
 
     osg::ref_ptr<osg::Group> rootNode;
