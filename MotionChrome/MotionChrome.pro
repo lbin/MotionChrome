@@ -33,8 +33,7 @@ SOURCES += main.cpp\
     OpenSceneGraph/MainScene.cpp \
     UI/LayoutDesign.cpp \
     OpenSceneGraph/OSGGround.cpp \
-    OpenSceneGraph/OSGSkeleton.cpp \
-    OpenSceneGraph/LightManager.cpp
+    OpenSceneGraph/OSGSkeleton.cpp
 
 HEADERS  += MotionChrome.h \
     OpenSceneGraph/OSGWidget.h \
@@ -42,7 +41,6 @@ HEADERS  += MotionChrome.h \
     UI/LayoutDesign.h \
     OpenSceneGraph/OSGGround.h \
     OpenSceneGraph/OSGSkeleton.h \
-    OpenSceneGraph/AnimtkViewerModelController.h \
-    OpenSceneGraph/LightManager.h
+    OpenSceneGraph/AnimtkViewerModelController.h
 
 FORMS    += MotionChrome.ui
