@@ -24,6 +24,11 @@ public:
         return _gw.get();
     }
 
+    QSize sizeHint() const
+    {
+        // 初始化窗口大小;
+        return QSize(1200, 900);
+    }
 protected:
     void init();
 

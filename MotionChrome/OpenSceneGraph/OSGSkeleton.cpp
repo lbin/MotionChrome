@@ -3,6 +3,8 @@
 osg::ref_ptr<osg::Group> createBody(osg::Vec3 offset)
 {
     // blue color
+    float bonew = 0.5f;
+    float ballw = ballw*2+1;
     osg::Vec4 boneColor(85.0f/255, 146.0f/255, 237.0f/255, 1.0f);
     osg::Vec4 jointColor(150.0f/255, 210.0f/255, 255.0f/255, 1.0f);
     osg::ref_ptr<osg::Group> group = new osg::Group;
@@ -12,11 +14,11 @@ osg::ref_ptr<osg::Group> createBody(osg::Vec3 offset)
     float len=t.length();
     t/=2;
 
-    osg::Cylinder *unitCylinder = new osg::Cylinder(osg::Vec3(0,0,0),3,len);
+    osg::Cylinder *unitCylinder = new osg::Cylinder(osg::Vec3(0,0,0),bonew,len);
     osg::ShapeDrawable* unitCylinderDrawable = new osg::ShapeDrawable(unitCylinder);
 
-    osg::Sphere* startSphere = new osg::Sphere(startPt, 5);
-    osg::Sphere* endSphere = new osg::Sphere(offset, 5);
+    osg::Sphere* startSphere = new osg::Sphere(startPt, bonew);
+    osg::Sphere* endSphere = new osg::Sphere(offset, bonew);
     osg::ShapeDrawable* startSphereDrawable=new osg::ShapeDrawable(startSphere);
     osg::ShapeDrawable* endSphereDrawable=new osg::ShapeDrawable(endSphere);
 

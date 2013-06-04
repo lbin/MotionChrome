@@ -31,17 +31,14 @@ MotionChrome::MotionChrome(QWidget *parent) :
     //add osg mainScene
     QDockWidget* displayDock = new QDockWidget(tr("Display"),this);
     displayDock->setFeatures(QDockWidget::AllDockWidgetFeatures);
-    displayDock->setAllowedAreas(NULL);
-    displayDock->setFloating(true);
+    displayDock->setAllowedAreas(Qt::LeftDockWidgetArea);
+    //displayDock->setFloating(TRUE);
     this->addDockWidget(Qt::LeftDockWidgetArea,displayDock);
     mainScene = new MainScene();
     displayDock->setWidget(mainScene);
     displayDock->widget()->show();
 
     //Beginning
-
-
-
 }
 
 MotionChrome::~MotionChrome()

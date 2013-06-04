@@ -24,7 +24,7 @@ MainScene::MainScene(QWidget * parent, const QGLWidget * shareWidget , WindowFla
 
     //Create Skeleton
     skelRoot = new OSGSkeleton;
-    skelRoot->createSkeleton("C:\\Users\\libin\\Desktop\\mocap\\1.bvh");
+    skelRoot->createSkeleton("D:\\mocap\\BVH\\1.bvh");
 
 
     osg::ref_ptr<osg::MatrixTransform> skelMat = new osg::MatrixTransform;
@@ -34,12 +34,16 @@ MainScene::MainScene(QWidget * parent, const QGLWidget * shareWidget , WindowFla
 
     //Camera
     this->getCamera()->setClearColor(osg::Vec4(0.0f/255, 0.0f/255, 0.0f/255, 1.0f));
-    //setCameraManipulator(new osgGA::TrackballManipulator);
-    //setCameraManipulator(new osgGA::NodeTrackerManipulator);
+    this->setCameraManipulator(new osgGA::TrackballManipulator);
+//    osgGA::NodeTrackerManipulator *ntm = new osgGA::NodeTrackerManipulator();
 
-    osgGA::NodeTrackerManipulator *ntm = new osgGA::NodeTrackerManipulator();
-    ntm->setTrackNode(skelRoot->skeleton);
-    this->setCameraManipulator(ntm);
+//    osgGA::NodeTrackerManipulator::TrackerMode trackerMode = osgGA::NodeTrackerManipulator::NODE_CENTER_AND_AZIM;
+//    ntm->setTrackerMode(trackerMode);
+
+//    osgGA::NodeTrackerManipulator::RotationMode rotationMode = osgGA::NodeTrackerManipulator::TRACKBALL;
+//    ntm->setRotationMode( rotationMode );
+//    ntm->setTrackNode(skelMat.get());
+//    this->setCameraManipulator(ntm);
 
 
     //Mirror
@@ -54,7 +58,7 @@ MainScene::MainScene(QWidget * parent, const QGLWidget * shareWidget , WindowFla
 
     //抗锯齿
     osg::DisplaySettings* ds = osg::DisplaySettings::instance();
-    ds->setNumMultiSamples(2);
+    ds->setNumMultiSamples(1);
     setDisplaySettings(ds);
 
     AnimtkViewerModelController& mc   = AnimtkViewerModelController::instance();
@@ -71,16 +75,59 @@ void MainScene::paintGL()
 
 osg::Node* MainScene::createMirroredScene(osg::Node* model)
 {
+    float lightHigth = 1000.0f;
+    float lightHigthPlus = 0.0f;
+    float lightX = 500.0f;
+    float lightY = 500.0f;
     //Light
     osg::Light* light = new osg::Light;
     light->setLightNum(0);
-    light->setPosition(osg::Vec4(500.0f,0.0f,500.0f,1.0f));
+    light->setPosition(osg::Vec4(lightX,lightY,lightHigth,1.0f));
     light->setDirection(osg::Vec3(0.0f,0.0f,0.0f));
     osg::LightSource* lightSource = new osg::LightSource;
     lightSource->setLight(light);
     lightSource->setLocalStateSetModes(osg::StateAttribute::ON);
     osg::StateSet* stateset = rootNode->getOrCreateStateSet();
+    stateset->setMode(GL_LIGHT0, osg::StateAttribute::ON );
     lightSource->setStateSetModes(*stateset,osg::StateAttribute::ON);
+
+    //Lithgt1  此后三个灯光暂时未使用
+    osg::Light* light1 = new osg::Light;
+    light1->setLightNum(1);
+    light1->setPosition(osg::Vec4(-lightX,-lightY,lightHigth + lightHigthPlus,1.0f));
+    light1->setDirection(osg::Vec3(0.0f,0.0f,0.0f));
+    osg::LightSource* lightSource1 = new osg::LightSource;
+    lightSource1->setLight(light1);
+    lightSource1->setLocalStateSetModes(osg::StateAttribute::ON);
+    stateset = rootNode->getOrCreateStateSet();
+    stateset->setMode(GL_LIGHT1, osg::StateAttribute::ON );
+    lightSource1->setStateSetModes(*stateset,osg::StateAttribute::ON);
+
+    //Lithgt2
+    osg::Light* light2 = new osg::Light;
+    light2->setLightNum(2);
+    light2->setPosition(osg::Vec4(lightX,-lightY,lightHigth + lightHigthPlus,1.0f));
+    light2->setDirection(osg::Vec3(0.0f,0.0f,0.0f));
+    osg::LightSource* lightSource2 = new osg::LightSource;
+    lightSource2->setLight(light2);
+    lightSource2->setLocalStateSetModes(osg::StateAttribute::ON);
+    stateset = rootNode->getOrCreateStateSet();
+    stateset->setMode(GL_LIGHT2, osg::StateAttribute::ON );
+    lightSource2->setStateSetModes(*stateset,osg::StateAttribute::ON);
+
+    //Lithgt3
+    osg::Light* light3 = new osg::Light;
+    light3->setLightNum(3);
+    light3->setPosition(osg::Vec4(-lightX,lightY,lightHigth + lightHigthPlus,1.0f));
+    light3->setDirection(osg::Vec3(0.0f,0.0f,0.0f));
+    osg::LightSource* lightSource3 = new osg::LightSource;
+    lightSource3->setLight(light3);
+    lightSource3->setLocalStateSetModes(osg::StateAttribute::ON);
+    stateset = rootNode->getOrCreateStateSet();
+    stateset->setMode(GL_LIGHT3, osg::StateAttribute::ON );
+    lightSource3->setStateSetModes(*stateset,osg::StateAttribute::ON);
+
+
 
     //Shadow
     osg::ref_ptr<osgShadow::ShadowedScene> shadowedScene = new osgShadow::ShadowedScene;
@@ -255,11 +302,16 @@ osg::Node* MainScene::createMirroredScene(osg::Node* model)
         osg::Geode* geode = new osg::Geode;
         geode->addDrawable(mirror);
         geode->setStateSet(statesetBin5);
+
         model->setNodeMask(CastsShadowTraversalMask);
         geode->setNodeMask(ReceivesShadowTraversalMask);
         shadowedScene->addChild(geode);
         shadowedScene->addChild(model);
         shadowedScene->addChild(lightSource);
+        shadowedScene->addChild(lightSource1);
+//        shadowedScene->addChild(lightSource2);
+//        shadowedScene->addChild(lightSource3);
+
 
         mirNode->addChild(shadowedScene);
     }

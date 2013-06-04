@@ -22,9 +22,9 @@ OSGGround::~OSGGround(void)
 osg::Drawable* OSGGround::createGround()
 {
     osg::Vec3 center(0.0f,0.0f,-1.0f);
-    float radius = 10000.0f;
-    int numTilesX = 300;
-    int numTilesY = 300;
+    float radius = 5000.0f;
+    int numTilesX = 100;
+    int numTilesY = 100;
     float width = 2*radius;
     float height = 2*radius;
     osg::Vec3 v000(center - osg::Vec3(width*0.5f,height*0.5f,0.0f));

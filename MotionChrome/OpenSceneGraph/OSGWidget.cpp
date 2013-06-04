@@ -7,6 +7,7 @@ OSGWidget::OSGWidget( QWidget * parent, const QGLWidget * shareWidget, WindowFla
     setFocusPolicy(Qt::ClickFocus);
 
     getCamera()->setViewport(new osg::Viewport(0,0,width(),height()));
+
     getCamera()->setGraphicsContext(getGraphicsWindow());
 
     setThreadingModel(osgViewer::Viewer::SingleThreaded);
