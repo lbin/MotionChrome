@@ -13,14 +13,13 @@
 
 OSGGround::OSGGround(void)
 {
-    rootNode = new osg::MatrixTransform;
-    createGround();
+    rootNode = createGround();
 }
 
 OSGGround::~OSGGround(void)
 {
 }
-int OSGGround::createGround()
+osg::Drawable* OSGGround::createGround()
 {
     osg::Vec3 center(0.0f,0.0f,-1.0f);
     float radius = 1000.0f;
@@ -43,9 +42,9 @@ int OSGGround::createGround()
         }
     }
     osg::Vec4Array* colors = new osg::Vec4Array;
-    colors->push_back(osg::Vec4(24.0f/255,112.0f/255,199.0f/255,1.0f)); // white
+    colors->push_back(osg::Vec4(100.0f/255,112.0f/255,199.0f/255,1.0f)); // white
 
-    colors->push_back(osg::Vec4(160.0f/255,160.0f/255,160.0f/255,1.0f));
+    colors->push_back(osg::Vec4(60.0f/255,60.0f/255,60.0f/255,1.0f));
     int numColors=colors->size();
 
 
@@ -75,16 +74,15 @@ int OSGGround::createGround()
     geom->setNormalArray(normals);
     geom->setNormalBinding(osg::Geometry::BIND_OVERALL);
     geom->addPrimitiveSet(new osg::DrawArrays(osg::PrimitiveSet::QUADS,0,coordIndices->size()));
-    osg::Geode* geode = new osg::Geode;
-    geode->addDrawable(geom);
-    rootNode->addChild(geode);
-    //rootNode->setMatrix(osg::Matrix::rotate(osg::inDegrees(30.0f),1.0f,0.0f,0.0f));
-    rootNode->setDataVariance(osg::Object::DYNAMIC);
-    return 1;
+//    osg::Geode* geode = new osg::Geode;
+//    geode->addDrawable(geom);
+//    rootNode->addChild(geode);
+//    rootNode->setDataVariance(osg::Object::DYNAMIC);
+    return geom;
 
 }
 
-osg::ref_ptr<osg::MatrixTransform> OSGGround::getRootNode()
+osg::Drawable* OSGGround::getRootNode()
 {
     return rootNode;
 }

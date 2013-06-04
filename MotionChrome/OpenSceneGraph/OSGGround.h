@@ -11,11 +11,11 @@ public:
     OSGGround();
     ~OSGGround();
 
-    int createGround();
-    osg::ref_ptr<osg::MatrixTransform> getRootNode();
+    osg::Drawable* createGround();
+    osg::Drawable* getRootNode();
 
 private:
-    osg::ref_ptr<osg::MatrixTransform> rootNode;
+    osg::Drawable* rootNode;
 };
 
 #endif // OSGGROUND_H

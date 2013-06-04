@@ -37,6 +37,8 @@ public:
 
     osg::ref_ptr<osg::Group> rootNode;
 
+    osg::Node* createMirroredScene(osg::Node* model);
+
 protected:
     QTimer _timer;
 
