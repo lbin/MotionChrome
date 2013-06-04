@@ -22,9 +22,9 @@ OSGGround::~OSGGround(void)
 osg::Drawable* OSGGround::createGround()
 {
     osg::Vec3 center(0.0f,0.0f,-1.0f);
-    float radius = 1000.0f;
-    int numTilesX = 100;
-    int numTilesY = 100;
+    float radius = 10000.0f;
+    int numTilesX = 300;
+    int numTilesY = 300;
     float width = 2*radius;
     float height = 2*radius;
     osg::Vec3 v000(center - osg::Vec3(width*0.5f,height*0.5f,0.0f));
@@ -42,9 +42,9 @@ osg::Drawable* OSGGround::createGround()
         }
     }
     osg::Vec4Array* colors = new osg::Vec4Array;
-    colors->push_back(osg::Vec4(100.0f/255,112.0f/255,199.0f/255,1.0f)); // white
+    colors->push_back(osg::Vec4(17.0f/255,17.0f/255,17.0f/255,1.0f)); // white
 
-    colors->push_back(osg::Vec4(60.0f/255,60.0f/255,60.0f/255,1.0f));
+    colors->push_back(osg::Vec4(239.0f/255,239.0f/255,239.0f/255,1.0f));
     int numColors=colors->size();
 
 

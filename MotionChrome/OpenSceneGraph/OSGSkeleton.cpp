@@ -12,11 +12,11 @@ osg::ref_ptr<osg::Group> createBody(osg::Vec3 offset)
     float len=t.length();
     t/=2;
 
-    osg::Cylinder *unitCylinder = new osg::Cylinder(osg::Vec3(0,0,0),5,len);
+    osg::Cylinder *unitCylinder = new osg::Cylinder(osg::Vec3(0,0,0),3,len);
     osg::ShapeDrawable* unitCylinderDrawable = new osg::ShapeDrawable(unitCylinder);
 
-    osg::Sphere* startSphere = new osg::Sphere(startPt, 7);
-    osg::Sphere* endSphere = new osg::Sphere(offset, 7);
+    osg::Sphere* startSphere = new osg::Sphere(startPt, 5);
+    osg::Sphere* endSphere = new osg::Sphere(offset, 5);
     osg::ShapeDrawable* startSphereDrawable=new osg::ShapeDrawable(startSphere);
     osg::ShapeDrawable* endSphereDrawable=new osg::ShapeDrawable(endSphere);
 

@@ -4,6 +4,7 @@
 #include <osg/ClipNode>
 #include <osg/ClipPlane>
 #include <osg/BlendFunc>
+#include <osgGA/NodeTrackerManipulator>
 
 const int ReceivesShadowTraversalMask = 0x1; //标识阴影接收对象（例如地面）的掩码
 const int CastsShadowTraversalMask = 0x2;    //标识阴影投射对象（例如Body）的掩码。
@@ -13,6 +14,7 @@ MainScene::MainScene(QWidget * parent, const QGLWidget * shareWidget , WindowFla
 {
     rootNode = new osg::Group;
 
+    //Creat Ground
     ground = new OSGGround;
     osg::ref_ptr<osg::MatrixTransform> groundMat = new osg::MatrixTransform;
     osg::Geode* groundGeode = new osg::Geode;
@@ -31,8 +33,13 @@ MainScene::MainScene(QWidget * parent, const QGLWidget * shareWidget , WindowFla
     //rootNode->addChild(skelMat);
 
     //Camera
-    this->getCamera()->setClearColor(osg::Vec4(131.0f/255, 169.0f/255, 201.0f/255, 1.0f));
-    setCameraManipulator(new osgGA::TrackballManipulator);
+    this->getCamera()->setClearColor(osg::Vec4(0.0f/255, 0.0f/255, 0.0f/255, 1.0f));
+    //setCameraManipulator(new osgGA::TrackballManipulator);
+    //setCameraManipulator(new osgGA::NodeTrackerManipulator);
+
+    osgGA::NodeTrackerManipulator *ntm = new osgGA::NodeTrackerManipulator();
+    ntm->setTrackNode(skelRoot->skeleton);
+    this->setCameraManipulator(ntm);
 
 
     //Mirror
