@@ -25,7 +25,9 @@ MainScene::MainScene(QWidget * parent, const QGLWidget * shareWidget , WindowFla
     //Create Skeleton
     skelRoot = new OSGSkeleton;
     skelRoot->createSkeleton("D:\\mocap\\BVH\\1.bvh");
-
+    //Wating~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    //skinRoot = dynamic_cast<osg::MatrixTransform*>(osgDB::readNodeFile("D:\\mocap\\Model\\1.osg"));
+    //Wating~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     osg::ref_ptr<osg::MatrixTransform> skelMat = new osg::MatrixTransform;
     skelMat->addChild(skelRoot->skeleton);
@@ -34,16 +36,18 @@ MainScene::MainScene(QWidget * parent, const QGLWidget * shareWidget , WindowFla
 
     //Camera
     this->getCamera()->setClearColor(osg::Vec4(0.0f/255, 0.0f/255, 0.0f/255, 1.0f));
-    this->setCameraManipulator(new osgGA::TrackballManipulator);
-//    osgGA::NodeTrackerManipulator *ntm = new osgGA::NodeTrackerManipulator();
-
-//    osgGA::NodeTrackerManipulator::TrackerMode trackerMode = osgGA::NodeTrackerManipulator::NODE_CENTER_AND_AZIM;
-//    ntm->setTrackerMode(trackerMode);
-
-//    osgGA::NodeTrackerManipulator::RotationMode rotationMode = osgGA::NodeTrackerManipulator::TRACKBALL;
-//    ntm->setRotationMode( rotationMode );
-//    ntm->setTrackNode(skelMat.get());
-//    this->setCameraManipulator(ntm);
+    //
+//    this->setCameraManipulator(new osgGA::TrackballManipulator);
+    //
+    //Track
+    osgGA::NodeTrackerManipulator *ntm = new osgGA::NodeTrackerManipulator();
+    osgGA::NodeTrackerManipulator::TrackerMode trackerMode = osgGA::NodeTrackerManipulator::NODE_CENTER_AND_AZIM;
+    ntm->setTrackerMode(trackerMode);
+    osgGA::NodeTrackerManipulator::RotationMode rotationMode = osgGA::NodeTrackerManipulator::TRACKBALL;
+    ntm->setRotationMode( rotationMode );
+    ntm->setTrackNode(skelMat.get());
+    this->setCameraManipulator(ntm);
+    //Track
 
 
     //Mirror

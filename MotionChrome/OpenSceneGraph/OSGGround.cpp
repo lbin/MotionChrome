@@ -42,9 +42,9 @@ osg::Drawable* OSGGround::createGround()
         }
     }
     osg::Vec4Array* colors = new osg::Vec4Array;
-    colors->push_back(osg::Vec4(17.0f/255,17.0f/255,17.0f/255,1.0f)); // white
+    colors->push_back(osg::Vec4(97.0f/255,97.0f/255,97.0f/255,1.0f)); // white
 
-    colors->push_back(osg::Vec4(239.0f/255,239.0f/255,239.0f/255,1.0f));
+    colors->push_back(osg::Vec4(0.0f/255,0.0f/255,0.0f/255,1.0f));
     int numColors=colors->size();
 
 

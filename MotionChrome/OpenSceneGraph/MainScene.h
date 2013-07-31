@@ -33,6 +33,7 @@ public:
 
     OSGGround* ground;
     OSGSkeleton* skelRoot;
+    osg::MatrixTransform* skinRoot;
 
 
     osg::ref_ptr<osg::Group> rootNode;
