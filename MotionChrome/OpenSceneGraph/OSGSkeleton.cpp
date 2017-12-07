@@ -7,6 +7,7 @@ osg::ref_ptr<osg::Group> createBody(osg::Vec3 offset)
     float ballw = bonew+1;
     osg::Vec4 boneColor(85.0f/255, 146.0f/255, 237.0f/255, 1.0f);
     osg::Vec4 jointColor(150.0f/255, 210.0f/255, 255.0f/255, 1.0f);
+
     osg::ref_ptr<osg::Group> group = new osg::Group;
 
     osg::Vec3 startPt = osg::Vec3(0.0f,0.0f,0.0f);
